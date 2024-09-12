@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+import math
 
 class HandTracker:
     def __init__(self, static_image_mode=False, max_num_hands=1, min_detection_confidence=0.5, min_tracking_confidence=0.5):
@@ -65,3 +66,13 @@ class HandTracker:
             )
 
         return index_tip, thumb_tip
+
+    def calculate_angle(self, p1, p2):
+        """
+        Calculate angle between two points
+
+        :param p1: First point (x, y)
+        :param p2: Second point (x, y)
+        :return: Angle in radians
+        """
+        return math.atan2(p2[1] - p1[1], p2[0] - p1[0])
